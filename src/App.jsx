@@ -8,6 +8,7 @@ function App() {
   const [lightEntered, setLightEntered] = useState(false);
   const [showWelcome, setShowWelcome] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [showAllLanguages, setShowAllLanguages] = useState(false);
 
   const t = getTranslations(currentLanguage);
 
@@ -25,17 +26,11 @@ function App() {
     }
   }, []);
 
-  // Fonction "Entrer dans la Lumière"
+  // Fonction "Entrer dans la Lumière" style Calm
   const enterLight = () => {
     if (isAnimating) return;
     
     setIsAnimating(true);
-    
-    // Animation du bouton
-    const button = document.querySelector('.enter-light-btn');
-    if (button) {
-      button.style.transform = 'scale(1.2)';
-    }
     
     setTimeout(() => {
       // Changement background plus lumineux
@@ -50,89 +45,133 @@ function App() {
         setShowWelcome(false);
         setIsAnimating(false);
       }, 4000);
-    }, 500);
+    }, 300);
   };
 
-  // Composant Sélecteur de langues
-  const LanguageSelector = () => (
-    <div className="language-selector">
-      {availableLanguages.slice(0, 8).map((lang) => (
-        <button
-          key={lang.code}
-          className={`lang-btn ${currentLanguage === lang.code ? 'active' : ''}`}
-          onClick={() => changeLanguage(lang.code)}
-          title={lang.native}
-        >
-          {lang.flag} {lang.code.toUpperCase()}
-        </button>
-      ))}
-      {availableLanguages.length > 8 && (
-        <button 
-          className="lang-btn more-langs"
-          title={`+${availableLanguages.length - 8} autres langues`}
-        >
-          +{availableLanguages.length - 8}
-        </button>
-      )}
-    </div>
+  // Fonction pour retourner à l'accueil
+  const goToHome = () => {
+    // Réinitialiser l'état si nécessaire
+    if (lightEntered) {
+      document.body.classList.remove('light-entered');
+      setLightEntered(false);
+      setShowWelcome(false);
+      setIsAnimating(false);
+    }
+    // Scroll vers le haut
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // Composant Header style Calm.com
+  const CalmHeader = () => (
+    <header className="calm-header">
+      <button 
+        className="calm-logo"
+        onClick={goToHome}
+        title="Retour à l'accueil"
+      >
+        <div className="seraphina-icon">
+          ✨
+        </div>
+        SERAPHINA
+      </button>
+      
+      <div className="calm-language-selector">
+        {(showAllLanguages ? availableLanguages : availableLanguages.slice(0, 6)).map((lang) => (
+          <button
+            key={lang.code}
+            className={`calm-lang-btn ${currentLanguage === lang.code ? 'active' : ''}`}
+            onClick={() => changeLanguage(lang.code)}
+            title={lang.native}
+          >
+            {lang.flag} {lang.code.toUpperCase()}
+          </button>
+        ))}
+        {!showAllLanguages && availableLanguages.length > 6 && (
+          <button 
+            className="calm-lang-btn"
+            onClick={() => setShowAllLanguages(true)}
+            title={`Afficher les ${availableLanguages.length - 6} autres langues`}
+          >
+            +{availableLanguages.length - 6}
+          </button>
+        )}
+        {showAllLanguages && (
+          <button 
+            className="calm-lang-btn"
+            onClick={() => setShowAllLanguages(false)}
+            title="Réduire la sélection"
+          >
+            ✕
+          </button>
+        )}
+      </div>
+    </header>
   );
 
-  // Composant Message de bienvenue
-  const WelcomeMessage = () => (
+  // Composant Message de bienvenue style Calm
+  const CalmWelcomeMessage = () => (
     showWelcome && (
-      <div className="welcome-message">
-        <h2>{t.welcomeTitle}</h2>
-        <p>{t.welcomeMessage}</p>
+      <div className="calm-welcome-message">
+        <h2 className="calm-welcome-title">{t.welcomeTitle}</h2>
+        <p className="calm-welcome-text">{t.welcomeMessage}</p>
       </div>
     )
   );
 
   return (
     <>
-      {/* Background style Calm.com */}
-      <div className="calm-background"></div>
-      
-      {/* Sélecteur de langues */}
-      <LanguageSelector />
-      
-      {/* Container principal */}
-      <div className="seraphina-container">
-        <section className="hero-seraphina">
-          {/* Identité SERAPHINA */}
-          <div className="seraphina-identity">
-            <h1>SERAPHINA</h1>
-            <p className="subtitle">{t.subtitle}</p>
-          </div>
-
-          {/* Message de mission */}
-          <div className="mission-message">
-            <p>{t.mission}</p>
+      {/* Hero Section EXACT style Calm.com */}
+      <div className="calm-hero">
+        <CalmHeader />
+        
+        <main className="calm-main-content">
+          <div className="calm-content-wrapper">
+            {/* Titre principal style Calm */}
+            <h1 className="calm-title">
+              SERAPHINA
+            </h1>
             
-            <blockquote className="carlos-quote">
-              "{t.quote}"
-              <cite>— {t.quoteAuthor}</cite>
-            </blockquote>
-            
-            <p className="memorial">
-              <em>{t.memorial}</em>
+            {/* Sous-titre style Calm */}
+            <p className="calm-subtitle">
+              {t.subtitle}
             </p>
+            
+            {/* Description style Calm */}
+            <p className="calm-description">
+              {t.mission}
+            </p>
+            
+            {/* Citation de Saint Carlos Acutis */}
+            <div className="calm-quote">
+              <p className="calm-quote-text">
+                "{t.quote}"
+              </p>
+              <p className="calm-quote-author">
+                — {t.quoteAuthor}
+              </p>
+            </div>
+            
+            {/* Mémoire */}
+            <p className="calm-memorial">
+              {t.memorial}
+            </p>
+            
+            {/* Bouton CTA style Calm.com */}
+            {!lightEntered && (
+              <Button 
+                className="calm-cta-button"
+                onClick={enterLight}
+                disabled={isAnimating}
+              >
+                {t.enterBtn}
+              </Button>
+            )}
           </div>
-
-          {/* Bouton "Entrer dans la Lumière" */}
-          {!lightEntered && (
-            <Button 
-              className="enter-light-btn"
-              onClick={enterLight}
-              disabled={isAnimating}
-            >
-              {t.enterBtn}
-            </Button>
-          )}
-        </section>
+        </main>
       </div>
       
       {/* Message de bienvenue */}
-      <WelcomeMessage />
+      <CalmWelcomeMessage />
     </>
   );
 }
