@@ -253,94 +253,103 @@
   margin: 0 auto;
 }
 
-/* Typographie EXACTE style Calm.com avec Caladea */
+/* Typographie EXACTE style Calm.com avec Caladea - VISIBILITÉ AMÉLIORÉE */
 .calm-title {
   font-family: 'Caladea', Georgia, serif;
-  font-weight: 400;                    /* Normal pour Caladea */
+  font-weight: 700;                    /* Bold pour meilleure visibilité */
   font-size: clamp(2.5rem, 8vw, 5rem); /* Grande taille responsive */
   letter-spacing: -0.01em;             /* Espacement légèrement serré */
   line-height: 1.1;                    /* Interlignage serré */
-  color: var(--calm-blue);             /* Bleu profond Calm */
-  margin-bottom: 1.5rem;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  color: #1e3a8a;                      /* Bleu foncé direct */
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8), 
+               0 0 8px rgba(255, 255, 255, 0.6);
 }
 
 .calm-subtitle {
   font-family: 'Caladea', Georgia, serif;
-  font-weight: 400;
-  font-size: clamp(1.1rem, 3vw, 1.5rem);
+  font-weight: 600;                    /* Semi-bold pour visibilité */
+  font-size: clamp(1.1rem, 3vw, 1.4rem);
   letter-spacing: 0.005em;
-  color: var(--calm-blue);
-  opacity: 0.8;
+  color: white;                        /* Blanc comme demandé */
   margin-bottom: 2rem;
   line-height: 1.4;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8),
+               0 0 8px rgba(0, 0, 0, 0.6);
 }
 
 .calm-description {
   font-family: 'Caladea', Georgia, serif;
-  font-weight: 400;
-  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  font-weight: 500;                    /* Medium pour lisibilité */
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
   line-height: 1.7;
-  color: var(--calm-gray);
+  color: white;                        /* Blanc comme demandé */
   margin-bottom: 3rem;
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8),
+               0 0 8px rgba(0, 0, 0, 0.6);
 }
 
-/* Citation style Calm avec accent spirituel */
+/* Citation style Calm sans rectangle */
 .calm-quote {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(20px);
-  border-radius: 1rem;
-  padding: 2rem;
-  margin: 2rem 0;
-  border-left: 4px solid var(--seraphina-gold);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  margin: 3rem auto;
+  max-width: 500px;
+  text-align: center;
 }
 
 .calm-quote-text {
   font-family: 'Caladea', Georgia, serif;
   font-size: 1.2rem;
   font-style: italic;
-  color: var(--calm-blue);
+  font-weight: 500;
+  color: white;                        /* Blanc comme demandé */
   margin-bottom: 1rem;
   line-height: 1.6;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8),
+               0 0 8px rgba(0, 0, 0, 0.6);
 }
 
 .calm-quote-author {
   font-family: 'Caladea', Georgia, serif;
   font-size: 1rem;
   font-weight: 700;
-  color: var(--seraphina-gold);
+  color: #d97706;                      /* Orange doré pour l'auteur */
   text-align: right;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8),
+               0 0 8px rgba(0, 0, 0, 0.6);
 }
 
 .calm-memorial {
+  font-family: 'Caladea', Georgia, serif;
   font-style: italic;
-  color: var(--calm-gray);
-  font-size: 1rem;
-  margin-top: 1.5rem;
-  opacity: 0.8;
+  font-weight: 600;                    /* Semi-bold pour visibilité */
+  color: white;                        /* Blanc comme demandé */
+  margin-top: 2rem;
+  font-size: 1rem;                     /* Taille augmentée */
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8),
+               0 0 8px rgba(0, 0, 0, 0.6);
 }
 
-/* Bouton EXACT style Calm.com */
+/* Bouton CTA style Calm.com */
 .calm-cta-button {
-  background: linear-gradient(135deg, var(--calm-teal), #0ea5e9);
-  color: var(--calm-white);
+  background: linear-gradient(135deg, #0891b2, #0ea5e9);
+  color: white;                        /* Blanc pour visibilité */
   border: none;
-  border-radius: 0.75rem;
   padding: 1rem 2.5rem;
   font-size: 1.1rem;
-  font-weight: 600;
+  font-weight: 700;                    /* Plus gras pour visibilité */
+  border-radius: 50px;
   cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: 0 4px 16px rgba(8, 145, 178, 0.3);
-  text-transform: none;
-  letter-spacing: 0.01em;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 16px rgba(8, 145, 178, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
   margin-top: 2rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
-
 .calm-cta-button:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(8, 145, 178, 0.4);
@@ -527,3 +536,6 @@
     transform: scale(1);
   }
 }
+
+/* Import des animations perfectionnées - ÉTAPE 7 */
+@import './animations.css';

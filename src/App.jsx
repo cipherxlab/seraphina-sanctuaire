@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button.jsx';
 import { availableLanguages, getTranslations, getBrowserLanguage } from './translations/index.js';
+import { generateMetadata } from './seo/metadata.js';
 import './App.css';
 
 function App() {
@@ -9,22 +10,70 @@ function App() {
   const [showWelcome, setShowWelcome] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
   const [showAllLanguages, setShowAllLanguages] = useState(false);
+  const [isLanguageChanging, setIsLanguageChanging] = useState(false);
 
   const t = getTranslations(currentLanguage);
 
-  // Fonction pour changer de langue
+  // Fonction pour changer de langue avec animation et SEO
   const changeLanguage = (langCode) => {
-    setCurrentLanguage(langCode);
-    localStorage.setItem('seraphina-language', langCode);
+    if (langCode === currentLanguage) return;
+    
+    setIsLanguageChanging(true);
+    
+    // Animation de transition
+    setTimeout(() => {
+      setCurrentLanguage(langCode);
+      localStorage.setItem('seraphina-language', langCode);
+      
+      // Mise à jour SEO dynamique
+      updateSEOMetadata(langCode);
+      
+      setIsLanguageChanging(false);
+    }, 300);
   };
 
-  // Charger la langue sauvegardée au démarrage
+  // Fonction pour mettre à jour les métadonnées SEO
+  const updateSEOMetadata = (language) => {
+    const metadata = generateMetadata(language);
+    
+    // Mise à jour du titre
+    document.title = metadata.title;
+    
+    // Mise à jour des meta tags
+    const updateMetaTag = (name, content) => {
+      let meta = document.querySelector(`meta[name="${name}"]`) || 
+                 document.querySelector(`meta[property="${name}"]`);
+      if (meta) {
+        meta.setAttribute('content', content);
+      }
+    };
+    
+    updateMetaTag('description', metadata.description);
+    updateMetaTag('keywords', metadata.keywords);
+    updateMetaTag('og:title', metadata.openGraph.title);
+    updateMetaTag('og:description', metadata.openGraph.description);
+    updateMetaTag('twitter:title', metadata.openGraph.title);
+    updateMetaTag('twitter:description', metadata.openGraph.description);
+    
+    // Mise à jour de la langue HTML
+    document.documentElement.lang = language;
+  };
+
+  // Charger la langue sauvegardée au démarrage et initialiser SEO
   useEffect(() => {
     const savedLanguage = localStorage.getItem('seraphina-language');
     if (savedLanguage && availableLanguages.find(lang => lang.code === savedLanguage)) {
       setCurrentLanguage(savedLanguage);
+      updateSEOMetadata(savedLanguage);
+    } else {
+      updateSEOMetadata(currentLanguage);
     }
   }, []);
+
+  // Mise à jour SEO lors du changement de langue
+  useEffect(() => {
+    updateSEOMetadata(currentLanguage);
+  }, [currentLanguage]);
 
   // Fonction "Entrer dans la Lumière" style Calm
   const enterLight = () => {
@@ -125,7 +174,7 @@ function App() {
         <CalmHeader />
         
         <main className="calm-main-content">
-          <div className="calm-content-wrapper">
+          <div className={`calm-content-wrapper ${isLanguageChanging ? 'language-changing' : ''}`}>
             {/* Titre principal style Calm */}
             <h1 className="calm-title">
               SERAPHINA
@@ -136,9 +185,9 @@ function App() {
               {t.subtitle}
             </p>
             
-            {/* Description style Calm */}
+            {/* Description principale */}
             <p className="calm-description">
-              {t.mission}
+              {t.description}
             </p>
             
             {/* Citation de Saint Carlos Acutis */}

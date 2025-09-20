@@ -1,0 +1,252 @@
+/* ÉTAPE 7 - Animations et transitions perfectionnées pour SERAPHINA */
+
+/* Animation d'entrée pour le titre principal */
+@keyframes seraphina-title-entrance {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+    filter: blur(5px);
+  }
+  50% {
+    opacity: 0.7;
+    transform: translateY(15px) scale(0.98);
+    filter: blur(2px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+/* Animation pour le contenu principal */
+@keyframes content-fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animation pour la citation */
+@keyframes quote-slide-in {
+  0% {
+    opacity: 0;
+    transform: translateX(-30px) scale(0.95);
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* Animation pour les boutons de langue */
+@keyframes lang-button-appear {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) rotate(-5deg);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.05) rotate(2deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+/* Animation pour le bouton CTA */
+@keyframes cta-pulse {
+  0% {
+    box-shadow: 0 4px 16px rgba(8, 145, 178, 0.3);
+  }
+  50% {
+    box-shadow: 0 6px 20px rgba(8, 145, 178, 0.4);
+    transform: translateY(-1px);
+  }
+  100% {
+    box-shadow: 0 4px 16px rgba(8, 145, 178, 0.3);
+  }
+}
+
+/* Animation de transition entre langues */
+@keyframes language-transition {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  50% {
+    opacity: 0.3;
+    transform: translateX(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Animation pour l'effet "Entrer dans la Lumière" */
+@keyframes light-transformation {
+  0% {
+    filter: brightness(1) contrast(1) saturate(1);
+  }
+  50% {
+    filter: brightness(1.2) contrast(1.1) saturate(1.2);
+  }
+  100% {
+    filter: brightness(1.1) contrast(1.05) saturate(1.1);
+  }
+}
+
+/* Animation pour le logo SERAPHINA */
+@keyframes logo-glow {
+  0% {
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+  }
+}
+
+/* Animation de parallaxe subtile pour le background */
+@keyframes subtle-parallax {
+  0% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Application des animations */
+.calm-title {
+  animation: seraphina-title-entrance 1.5s ease-out;
+}
+
+.calm-subtitle,
+.calm-description {
+  animation: content-fade-in 1s ease-out 0.3s both;
+}
+
+.calm-quote {
+  animation: quote-slide-in 1.2s ease-out 0.6s both;
+}
+
+.calm-lang-btn {
+  animation: lang-button-appear 0.4s ease-out;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.calm-lang-btn:nth-child(1) { animation-delay: 0.1s; }
+.calm-lang-btn:nth-child(2) { animation-delay: 0.15s; }
+.calm-lang-btn:nth-child(3) { animation-delay: 0.2s; }
+.calm-lang-btn:nth-child(4) { animation-delay: 0.25s; }
+.calm-lang-btn:nth-child(5) { animation-delay: 0.3s; }
+.calm-lang-btn:nth-child(6) { animation-delay: 0.35s; }
+
+.calm-cta-button {
+  animation: cta-pulse 3s ease-in-out infinite;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.calm-logo {
+  animation: logo-glow 4s ease-in-out infinite;
+  transition: all 0.3s ease;
+}
+
+/* Transition fluide pour changement de langue */
+.language-changing .calm-content-wrapper {
+  animation: language-transition 0.6s ease-in-out;
+}
+
+/* Effet "Entrer dans la Lumière" */
+.light-entered .calm-hero {
+  animation: light-transformation 2s ease-in-out;
+}
+
+/* Parallaxe subtile pour le background */
+.calm-hero {
+  animation: subtle-parallax 20s ease-in-out infinite alternate;
+}
+
+/* Améliorations pour les transitions hover */
+.calm-lang-btn:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.calm-cta-button:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 12px 28px rgba(8, 145, 178, 0.5);
+}
+
+.calm-logo:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
+}
+
+/* Animation pour les éléments qui apparaissent */
+.fade-in-up {
+  animation: content-fade-in 0.8s ease-out;
+}
+
+/* Optimisations pour les performances */
+.calm-hero,
+.calm-title,
+.calm-subtitle,
+.calm-description,
+.calm-quote,
+.calm-lang-btn,
+.calm-cta-button,
+.calm-logo {
+  will-change: transform, opacity;
+}
+
+/* Réduction des animations pour les utilisateurs préférant moins de mouvement */
+@media (prefers-reduced-motion: reduce) {
+  .calm-title,
+  .calm-subtitle,
+  .calm-description,
+  .calm-quote,
+  .calm-lang-btn,
+  .calm-cta-button,
+  .calm-logo {
+    animation: none;
+  }
+  
+  .calm-hero {
+    animation: none;
+    background-attachment: scroll;
+  }
+  
+  .calm-lang-btn:hover,
+  .calm-cta-button:hover,
+  .calm-logo:hover {
+    transform: none;
+  }
+}
+
+/* Optimisations mobile */
+@media (max-width: 768px) {
+  .calm-title {
+    animation-duration: 1s;
+  }
+  
+  .calm-subtitle,
+  .calm-description {
+    animation-duration: 0.8s;
+  }
+  
+  .calm-quote {
+    animation-duration: 1s;
+  }
+}
