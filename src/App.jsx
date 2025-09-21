@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import './App.css'
 
+// Force deploy - Navigation moderne SERAPHINA
+
 function App() {
   const [language, setLanguage] = useState('fr')
   const [lightEntered, setLightEntered] = useState(false)
