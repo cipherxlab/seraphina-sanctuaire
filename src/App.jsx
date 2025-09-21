@@ -20,6 +20,12 @@ function App() {
         lieux: "Lieux Saints", 
         carlos: "Saint Carlos",
         carte: "Carte Monde"
+      },
+      content: {
+        miracles: "Contenu des miracles en cours de développement...",
+        lieux: "Contenu des lieux saints en cours de développement...",
+        carlos: "Biographie de Saint Carlos en cours de développement...",
+        carte: "Carte interactive en cours de développement..."
       }
     },
     en: {
@@ -34,6 +40,12 @@ function App() {
         lieux: "Holy Places",
         carlos: "Saint Carlos", 
         carte: "World Map"
+      },
+      content: {
+        miracles: "Miracles content under development...",
+        lieux: "Holy places content under development...",
+        carlos: "Saint Carlos biography under development...",
+        carte: "Interactive map under development..."
       }
     }
   }
@@ -76,29 +88,29 @@ function App() {
 
   const renderMiraclesContent = () => (
     <div className="tab-content">
-      <h2>Miracles Eucharistiques</h2>
-      <p>Contenu des miracles en cours de développement...</p>
+      <h2>{t.tabs.miracles} {language === 'fr' ? 'Eucharistiques' : 'Eucharistic'}</h2>
+      <p>{t.content.miracles}</p>
     </div>
   )
 
   const renderLieuxContent = () => (
     <div className="tab-content">
-      <h2>Lieux Saints</h2>
-      <p>Contenu des lieux saints en cours de développement...</p>
+      <h2>{t.tabs.lieux}</h2>
+      <p>{t.content.lieux}</p>
     </div>
   )
 
   const renderCarlosContent = () => (
     <div className="tab-content">
-      <h2>Saint Carlos Acutis</h2>
-      <p>Biographie de Saint Carlos en cours de développement...</p>
+      <h2>{t.tabs.carlos}</h2>
+      <p>{t.content.carlos}</p>
     </div>
   )
 
   const renderCarteContent = () => (
     <div className="tab-content">
-      <h2>Carte Monde Interactive</h2>
-      <p>Carte interactive en cours de développement...</p>
+      <h2>{t.tabs.carte}</h2>
+      <p>{t.content.carte}</p>
     </div>
   )
 
