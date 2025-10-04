@@ -114,10 +114,34 @@ const MiraclesContent = ({ language }) => {
       sources: {
         title: "Sources et Documentation",
         items: [
-          "Rapports scientifiques officiels",
-          "Déclarations épiscopales",
-          "Témoignages historiques",
-          "Analyses de laboratoire indépendants"
+          {
+            text: "Rapports scientifiques officiels",
+            links: [
+              { text: "Analyses Lanciano (1970-1981)", url: "https://www.miracolieucaristici.org/fr/Liste/list.html" },
+              { text: "Études Buenos Aires", url: "https://www.miracolieucaristici.org/fr/Liste/scheda_fr.html?nat=argentina&wh=buenos&ct=Buenos%20Aires" }
+            ]
+          },
+          {
+            text: "Déclarations épiscopales",
+            links: [
+              { text: "Vatican - Miracles Eucharistiques", url: "https://www.vatican.va" },
+              { text: "Congrégation pour la Doctrine de la Foi", url: "https://www.vatican.va/roman_curia/congregations/cfaith/" }
+            ]
+          },
+          {
+            text: "Documentation historique",
+            links: [
+              { text: "Site officiel Carlos Acutis", url: "https://www.carloacutis.com" },
+              { text: "Exposition Miracles Eucharistiques", url: "https://www.miracolieucaristici.org" }
+            ]
+          },
+          {
+            text: "Analyses scientifiques",
+            links: [
+              { text: "Laboratoire de Médecine Légale", url: "#" },
+              { text: "Institut de Pathologie", url: "#" }
+            ]
+          }
         ]
       }
     },
@@ -233,10 +257,34 @@ const MiraclesContent = ({ language }) => {
       sources: {
         title: "Sources and Documentation",
         items: [
-          "Official scientific reports",
-          "Episcopal declarations",
-          "Historical testimonies",
-          "Independent laboratory analyses"
+          {
+            text: "Official scientific reports",
+            links: [
+              { text: "Lanciano Analyses (1970-1981)", url: "https://www.miracolieucaristici.org/en/Liste/list.html" },
+              { text: "Buenos Aires Studies", url: "https://www.miracolieucaristici.org/en/Liste/scheda_en.html?nat=argentina&wh=buenos&ct=Buenos%20Aires" }
+            ]
+          },
+          {
+            text: "Episcopal declarations",
+            links: [
+              { text: "Vatican - Eucharistic Miracles", url: "https://www.vatican.va" },
+              { text: "Congregation for the Doctrine of Faith", url: "https://www.vatican.va/roman_curia/congregations/cfaith/" }
+            ]
+          },
+          {
+            text: "Historical documentation",
+            links: [
+              { text: "Official Carlos Acutis Site", url: "https://www.carloacutis.com" },
+              { text: "Eucharistic Miracles Exhibition", url: "https://www.miracolieucaristici.org" }
+            ]
+          },
+          {
+            text: "Scientific analyses",
+            links: [
+              { text: "Forensic Medicine Laboratory", url: "#" },
+              { text: "Pathology Institute", url: "#" }
+            ]
+          }
         ]
       }
     }
@@ -293,11 +341,27 @@ const MiraclesContent = ({ language }) => {
 
       <div className="sources-section">
         <h2>{t.sources.title}</h2>
-        <ul className="sources-list">
-          {t.sources.items.map((item, index) => (
-            <li key={index}>{item}</li>
+        <div className="sources-grid">
+          {t.sources.items.map((category, index) => (
+            <div key={index} className="source-category">
+              <h3 className="source-category-title">{category.text}</h3>
+              <ul className="source-links">
+                {category.links.map((link, linkIndex) => (
+                  <li key={linkIndex}>
+                    <a 
+                      href={link.url} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="source-link"
+                    >
+                      🔗 {link.text}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
           ))}
-        </ul>
+        </div>
       </div>
     </div>
   )
