@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './App.css'
+import MiraclesContent from './components/MiraclesContent'
 
 // Force deploy - Navigation moderne SERAPHINA
 
@@ -89,10 +90,7 @@ function App() {
   )
 
   const renderMiraclesContent = () => (
-    <div className="tab-content">
-      <h2>{t.tabs.miracles} {language === 'fr' ? 'Eucharistiques' : 'Eucharistic'}</h2>
-      <p>{t.content.miracles}</p>
-    </div>
+    <MiraclesContent language={language} />
   )
 
   const renderLieuxContent = () => (
